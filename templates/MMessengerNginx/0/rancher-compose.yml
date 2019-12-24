@@ -1,0 +1,31 @@
+.catalog:
+  name: "MMessenger Nginx Webserver"
+  version: "1.13"
+  description: "MMessenger Nginx Webserver"
+  questions:
+    - variable: MMSG_NGINX_LOG
+      description: "Nginx Log Path"
+      label: "Log Directory Path"
+      type: "string"
+      required: true
+      default: "/opt/MNginx/logs"
+    - variable: MMSG_NGINX_CERT
+      description: "Nginx Log Certificates Directory Path"
+      label: "Certificates Directory Path"
+      type: "string"
+      required: true
+      default: "/opt/MCerts"
+    - variable: MMSG_NGINX_CONF
+      description: "Nginx Config File"
+      label: "Nginx Config File Path"
+      type: "string"
+      required: true
+      default: "/opt/MNginx/nginx.conf"
+    - variable: MMSG_NGINX_SITES
+      description: "Nginx Virtual Website Config Path"
+      label: "Virtual Websites Config Directory"
+      type: "string"
+      required: true
+      default: "/opt/MNginx/sites-enabled"
+mnginx:
+  scale: 1

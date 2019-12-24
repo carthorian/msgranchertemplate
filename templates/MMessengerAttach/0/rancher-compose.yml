@@ -1,0 +1,25 @@
+.catalog:
+  name: "MMessenger Attachment Module"
+  version: "1.5"
+  description: "MMessenger Attachment Module for single host"
+  questions:
+    - variable: MMSG_ATTACH_CONFIG_PATH
+      description: "MMessenger Attachment Config Directory Path"
+      label: "Config Directory Path"
+      type: "string"
+      required: true
+      default: "/opt/MAttachmentServer/.config"
+    - variable: MMSG_ATTACH_CERT_PATH
+      description: "MMessenger Attachment Certificate Path"
+      label: "Certificate Path"
+      type: "string"
+      required: true
+      default: "/opt/MCerts/attachments"
+    - variable: MMSG_ATTACH_DATA_PATH
+      description: "MMessenger Attachment Data Directory Path"
+      label: "Data Directory Path"
+      type: "string"
+      required: true
+      default: "/mmsg-data/attachment/storage"
+mattachment:
+  scale: 1

@@ -1,0 +1,14 @@
+mattachment:
+    container_name: m_attachment
+    image: mmessenger/mattachment
+    restart: always
+    volumes:
+      - ${MMSG_ATTACH_DATA_PATH}:/export
+      - ${MMSG_ATTACH_CONFIG_PATH}:/root/.minio
+      - ${MMSG_ATTACH_CERT_PATH}:/root/.minio/certs
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.hostname_override: container_name
+    command: server /export 
+    tty: true
+    stdin_open: true

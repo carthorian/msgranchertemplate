@@ -1,0 +1,7 @@
+name: MMessengerNginx
+description: MMessenger Nginx Webserver
+version: 1.13
+maintainer: Mehmet KAPLAN
+license: "Main Digit"
+projectURL: "https://www.maindigit.com"
+category: MMessenger

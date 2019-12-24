@@ -1,0 +1,7 @@
+name: MMessengerRedis
+description: MMessenger Redis Database.
+version: 4.0.6
+maintainer: Mehmet KAPLAN
+license: "Main Digit"
+projectURL: "https://www.maindigit.com"
+category: MMessenger

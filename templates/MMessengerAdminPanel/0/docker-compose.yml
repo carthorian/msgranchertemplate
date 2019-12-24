@@ -1,0 +1,11 @@
+madminpanel:
+    container_name: redis
+    image: mmessenger/madminpanel
+    restart: always
+    environment:
+      - "JAVA_OPTS=-Dserver.port=${MMSG_PNL_JAVA_PORT} -Dpnl.mode=${MMSG_PNL_ADMIN_MODE} -Dspring.datasource.url=jdbc:postgresql://${MMSG_PNL_POSTGRE_DB} -Dspring.datasource.username=${MMSG_PNL_DB_USER} -Dspring.datasource.password=${MMSG_PNL_DB_PASS} -Dspring.datasource.driver-class-name=org.postgresql.Driver"
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.hostname_override: container_name
+    tty: true
+    stdin_open: true

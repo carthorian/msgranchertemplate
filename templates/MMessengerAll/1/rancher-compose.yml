@@ -1,0 +1,122 @@
+.catalog:
+  name: "MMessenger Core Module Without Log Module"
+  version: "1.0.19_nolog"
+  description: "MMessenger Core Module for single host Without Log Module"
+  questions:
+    - variable: MMSG_MESSENGER_CONFIG_PATH
+      description: "MMessenger Config Directory Path"
+      label: "Config Directory Path"
+      type: "string"
+      required: true
+      default: "/opt/MMessengerServer/config"
+    - variable: MMSG_MESSENGER_CERT_PATH
+      description: "MMessenger Certificate Path"
+      label: "Certificate Directory Path"
+      type: "string"
+      required: true
+      default: "/opt/MCerts/messenger"
+    - variable: MMSG_REDIS_DATA
+      description: "Redis Data Directory Path"
+      label: "Data Directory Path"
+      type: "string"
+      required: true
+      default: "/mmsg-data/redis"
+    - variable: MMSG_POSTGRES_ACC_USER
+      description: "MMessenger PostgreSQL Username for AccountDB"
+      label: "Username"
+      type: "string"
+      required: true
+      default: "mmsguser"
+    - variable: MMSG_POSTGRES_ACC_PASSWORD
+      description: "MMessenger PostgreSQL Password for AccountDB "
+      label: "Password"
+      type: "string"
+      required: true
+      default: "mmsgpass"
+    - variable: MMSG_POSTGRES_ACC_DB
+      description: "MMessenger PostgreSQL Database Name for AccountDB "
+      label: "DatabaseName"
+      type: "string"
+      required: true
+      default: "maccountdb"
+    - variable: MMSG_POSTGRES_ACC_DATA
+      description: "MMessenger PostgreSQL Database Data Directory for AccountDB "
+      label: "Data Directory Path"
+      type: "string"
+      required: true
+      default: "/mmsg-data/account"
+    - variable: MMSG_POSTGRES_MSG_USER
+      description: "MMessenger PostgreSQL Username for MessageDB"
+      label: "mmsguser"
+      type: "string"
+      required: true
+      default: "mmsguser"
+    - variable: MMSG_POSTGRES_MSG_PASSWORD
+      description: "MMessenger PostgreSQL Password for MessageDB"
+      label: "mmsgpass"
+      type: "string"
+      required: true
+      default: "mmsgpass"
+    - variable: MMSG_POSTGRES_MSG_DB
+      description: "MMessenger PostgreSQL Database Name for MessageDB"
+      label: "Database Name"
+      type: "string"
+      required: true
+      default: "mmessagedb"
+    - variable: MMSG_POSTGRES_MSG_DATA
+      description: "MMessenger PostgreSQL Database Data Directory for MessageDB "
+      label: "Data Directory Path"
+      type: "string"
+      required: true
+      default: "/mmsg-data/message"
+
+mmsglb:
+  scale: 1
+  lb_config:
+    port_rules:
+      - source_port: 80
+        target_port: 8080
+        service: mmsg
+      - source_port: 443
+        target_port: 443
+        service: mmsg
+    health_check:
+      port: 80
+      interval: 60000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 5000
+
+mmsg:
+  scale: 2
+  retain_ip: true
+  health_check:
+    port: 8080
+    interval: 60000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 2
+    response_timeout: 5000
+
+redis:
+  scale: 1
+
+maccountpostgres:
+  scale: 1
+  health_check:
+    port: 5432
+    interval: 60000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 2
+    response_timeout: 5000
+
+mmessagepostgres:
+  scale: 1
+  health_check:
+    port: 5432
+    interval: 60000
+    unhealthy_threshold: 3
+    strategy: recreate
+    healthy_threshold: 2
+    response_timeout: 5000

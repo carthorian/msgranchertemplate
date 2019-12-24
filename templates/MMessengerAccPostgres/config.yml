@@ -1,0 +1,7 @@
+name: MMessengerAccPostgres
+description: MMessenger AccountDB PostgreSQL database.
+version: 9.5
+maintainer: Mehmet KAPLAN
+license: "Main Digit"
+projectURL: "https://www.maindigit.com"
+category: MMessenger

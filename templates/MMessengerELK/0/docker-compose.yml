@@ -1,0 +1,63 @@
+melastic:
+    container_name: m_elastic
+    image: elasticsearch
+    restart: always
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.hostname_override: container_name
+    environment:
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ${MMSG_ELASTIC_DATA}:/usr/share/elasticsearch/data
+    tty: true
+    stdin_open: true
+mkibana:
+    image: kibana
+    container_name: m_kibana
+    restart: always
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.hostname_override: container_name
+    ports:
+      - ${MMSG_KIBANA_PORT}:5601
+    links:
+      - melastic:elasticsearch
+    depends_on:
+      - melastic
+    tty: true
+    stdin_open: true
+mlogstash:
+    image: mmessenger/logstash
+    container_name: m_logstash
+    restart: always
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.hostname_override: container_name
+    links:
+      - melastic:elasticsearch
+    volumes:
+      - ${MMSG_LOGSTASH_CONFIG}:/config-dir
+    command: logstash -f /config-dir/logstash.conf
+    depends_on:
+      - melastic
+    tty: true
+    stdin_open: true
+mlog:
+    image: mmessenger/m_logserver
+    container_name: m_log
+    restart: always
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.hostname_override: container_name
+    links:
+      - m_logstash:m_logstash
+    ports:
+      - ${MMSG_LOG_PORT}:514
+    depends_on:
+      - mlogstash
+    tty: true
+    stdin_open: true

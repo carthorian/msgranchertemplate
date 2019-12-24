@@ -1,0 +1,31 @@
+.catalog:
+  name: "MMessenger Message PostgreSQL"
+  version: "9.5"
+  description: "MMessenger MessageDB PostgreSQL"
+  questions:
+    - variable: MMSG_POSTGRES_MSG_USER
+      description: "MMessenger PostgreSQL Username for MessageDB"
+      label: "mmsguser"
+      type: "string"
+      required: true
+      default: "mmsguser"
+    - variable: MMSG_POSTGRES_MSG_PASSWORD
+      description: "MMessenger PostgreSQL Password for MessageDB"
+      label: "mmsgpass"
+      type: "string"
+      required: true
+      default: "mmsgpass"
+    - variable: MMSG_POSTGRES_MSG_DB
+      description: "MMessenger PostgreSQL Database Name for MessageDB"
+      label: "Database Name"
+      type: "string"
+      required: true
+      default: "mmessagedb"
+    - variable: MMSG_POSTGRES_MSG_DATA
+      description: "MMessenger PostgreSQL Database Data Directory for MessageDB "
+      label: "Data Directory Path"
+      type: "string"
+      required: true
+      default: "/mmsg-data/message"
+messagepostgres:
+  scale: 1

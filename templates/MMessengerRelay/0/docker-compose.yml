@@ -1,0 +1,11 @@
+mrelay:
+    container_name: m_relay
+    image: mmessenger/mrelay
+    restart: always
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.hostname_override: container_name
+    tty: true
+    stdin_open: true
+    ports:
+     - "${MMSG_RELAY_PORT}:443"

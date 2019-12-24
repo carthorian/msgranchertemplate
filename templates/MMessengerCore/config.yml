@@ -1,0 +1,7 @@
+name: MMessengerCore
+description: MMessenger Core. It's contain only docker image.
+version: 1.0.18
+maintainer: Mehmet KAPLAN
+license: "Main Digit"
+projectURL: "https://www.maindigit.com"
+category: MMessenger

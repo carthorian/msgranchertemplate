@@ -1,0 +1,17 @@
+mmsg:
+    container_name: mmsg
+    image: mmessenger/mmessengerserver:1.0.18
+    restart: always
+    volumes:
+      - ${MMSG_MESSENGER_CONFIG_PATH}:/mmsg/config
+      - ${MMSG_MESSENGER_CONFIG_PATH}/mmessenger.yml:/mmessenger.yml
+      - ${MMSG_MESSENGER_CONFIG_PATH}/mmessenger.yml:/config/mmessenger.yml
+      - ${MMSG_MESSENGER_CONFIG_PATH}/mmessenger.yml:/mmsg/config/mmessenger.yml
+      - ${MMSG_MESSENGER_CERT_PATH}:/mmsg/config/cert
+      - ${MMSG_MESSENGER_CERT_PATH}/keystore:/keystore
+      - ${MMSG_MESSENGER_CERT_PATH}/cert.p12:/cert.p12
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.hostname_override: container_name
+    tty: true
+    stdin_open: true

@@ -1,0 +1,16 @@
+mnginx:
+    container_name: m_nginx
+    image: mmessenger/m_nginx
+    restart: always
+    volumes:
+      - ${MMSG_NGINX_LOG}:/var/log/nginx
+      - ${MMSG_NGINX_CERT}:/etc/nginx/sitecerts:ro
+      - ${MMSG_NGINX_CONF}:/etc/nginx/nginx.conf:ro
+      - ${MMSG_NGINX_SITES}:/etc/nginx/sites-enabled
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.hostname_override: container_name
+    tty: true
+    stdin_open: true
+    ports:
+      - "443:443"

@@ -1,0 +1,13 @@
+.catalog:
+  name: "MMessenger Relay Server"
+  version: "1.0.0"
+  description: "MMessenger Relay Server"
+  questions:
+    - variable: MMSG_RELAY_PORT
+      description: "Relay Server Turn Port"
+      label: "Turn Server Port"
+      type: "int"
+      required: true
+      default: "9500"
+mrelay:
+  scale: 1

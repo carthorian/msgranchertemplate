@@ -1,0 +1,7 @@
+name: MMessengerAll
+description: MMessenger for PoC. It's contain all modeules.
+version: 1.0.18
+maintainer: Mehmet KAPLAN
+license: "Main Digit"
+projectURL: "https://www.maindigit.com"
+category: MMessenger

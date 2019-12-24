@@ -1,0 +1,31 @@
+.catalog:
+  name: "MMessenger AccountDB PostgreSQL"
+  version: "9.5"
+  description: "MMessenger AccountDB PostgreSQL"
+  questions:
+    - variable: MMSG_POSTGRES_ACC_USER
+      description: "MMessenger PostgreSQL Username for AccountDB"
+      label: "Username"
+      type: "string"
+      required: true
+      default: "mmsguser"
+    - variable: MMSG_POSTGRES_ACC_PASSWORD
+      description: "MMessenger PostgreSQL Password for AccountDB "
+      label: "Password"
+      type: "string"
+      required: true
+      default: "mmsgpass"
+    - variable: MMSG_POSTGRES_ACC_DB
+      description: "MMessenger PostgreSQL Database Name for AccountDB "
+      label: "DatabaseName"
+      type: "string"
+      required: true
+      default: "maccountdb"
+    - variable: MMSG_POSTGRES_ACC_DATA
+      description: "MMessenger PostgreSQL Database Data Directory for AccountDB "
+      label: "Data Directory Path"
+      type: "string"
+      required: true
+      default: "/msg-data/account"
+maccountpostgres:
+  scale: 1

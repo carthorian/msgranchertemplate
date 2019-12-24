@@ -1,0 +1,37 @@
+.catalog:
+  name: "MMessenger Central Logging"
+  version: "1.0.0"
+  description: "MMessenger Central Logging"
+  questions:
+    - variable: MMSG_ELASTIC_DATA
+      description: "Central Logging Elasticsearch Data Dir"
+      label: "Data Directory"
+      type: "string"
+      required: true
+      default: "/mmsg-data/elasticdata"
+    - variable: MMSG_KIBANA_PORT
+      description: "Central Logging Kibana Webserver Port"
+      label: "Central Logging Web Port"
+      type: "int"
+      required: true
+      default: "5601"
+    - variable: MMSG_LOGSTASH_CONFIG
+      description: "Central Logging Logstash Config Directory"
+      label: "Logstash Config Directory"
+      type: "string"
+      required: true
+      default: "/opt/MLogCenter/m_logstash/config"
+    - variable: MMSG_LOG_PORT
+      description: "Central Logging Syslog Server Port"
+      label: "Syslog Server Port"
+      type: "int"
+      required: true
+      default: "514"
+melastic:
+  scale: 1
+mkibana:
+  scale: 1
+mlogstash:
+  scale: 1
+mlog:
+  scale: 1

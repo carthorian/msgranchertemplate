@@ -1,0 +1,18 @@
+maccountpostgres:
+    container_name: maccountpostgres
+    image: mmessenger/mpostgres
+    restart: always
+    volumes:
+      - ${MMSG_POSTGRES_ACC_DATA}:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${MMSG_POSTGRES_ACC_USER}
+      POSTGRES_PASSWORD: ${MMSG_POSTGRES_ACC_PASSWORD}
+      POSTGRES_DB: ${MMSG_POSTGRES_ACC_DB}
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.hostname_override: container_name
+    tty: true
+    stdin_open: true
+    ports:
+      - "5472:5432"
+      

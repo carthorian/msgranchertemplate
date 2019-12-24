@@ -1,0 +1,70 @@
+version: '2'
+services:
+  mmsglb:
+      container_name: mmsglb
+      ports:
+        - 443
+        - 80
+      image: rancher/lb-service-haproxy:latest
+
+  mmsg:
+      container_name: mmsg
+      image: mmessenger/mmessengerserver:1.0.18
+      restart: always
+      volumes:
+        - ${MMSG_MESSENGER_CONFIG_PATH}:/mmsg/config
+        - ${MMSG_MESSENGER_CONFIG_PATH}/mmessenger.yml:/mmessenger.yml
+        - ${MMSG_MESSENGER_CONFIG_PATH}/mmessenger.yml:/config/mmessenger.yml
+        - ${MMSG_MESSENGER_CONFIG_PATH}/mmessenger.yml:/mmsg/config/mmessenger.yml
+        - ${MMSG_MESSENGER_CERT_PATH}:/mmsg/config/cert
+        - ${MMSG_MESSENGER_CERT_PATH}/keystore:/keystore
+        - ${MMSG_MESSENGER_CERT_PATH}/cert.p12:/cert.p12
+      labels:
+        io.rancher.container.pull_image: always
+        io.rancher.container.hostname_override: container_name
+      tty: true
+      stdin_open: true
+      
+  redis:
+      container_name: redis
+      image: mmessenger/mredis
+      restart: always
+      volumes:
+        - ${MMSG_REDIS_DATA}:/data
+      labels:
+        io.rancher.container.pull_image: always
+        io.rancher.container.hostname_override: container_name
+      tty: true
+      stdin_open: true
+      
+  maccountpostgres:
+      container_name: maccountpostgres
+      image: mmessenger/mpostgres
+      restart: always
+      volumes:
+        - ${MMSG_POSTGRES_ACC_DATA}:/var/lib/postgresql/data
+      environment:
+        POSTGRES_USER: ${MMSG_POSTGRES_ACC_USER}
+        POSTGRES_PASSWORD: ${MMSG_POSTGRES_ACC_PASSWORD}
+        POSTGRES_DB: ${MMSG_POSTGRES_ACC_DB}
+      labels:
+        io.rancher.container.pull_image: always
+        io.rancher.container.hostname_override: container_name
+      tty: true
+      stdin_open: true
+
+  mmessagepostgres:
+      container_name: mmessagepostgres
+      image: mmessenger/mpostgres
+      restart: always
+      volumes:
+        - ${MMSG_POSTGRES_MSG_DATA}:/var/lib/postgresql/data
+      environment:
+        POSTGRES_USER: ${MMSG_POSTGRES_MSG_USER}
+        POSTGRES_PASSWORD: ${MMSG_POSTGRES_MSG_PASSWORD}
+        POSTGRES_DB: ${MMSG_POSTGRES_MSG_DB}
+      labels:
+        io.rancher.container.pull_image: always
+        io.rancher.container.hostname_override: container_name
+      tty: true
+      stdin_open: true

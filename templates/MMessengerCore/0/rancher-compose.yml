@@ -1,0 +1,19 @@
+.catalog:
+  name: "MMessenger Core Module"
+  version: "1.0.18"
+  description: "MMessenger Core Module for single host"
+  questions:
+    - variable: MMSG_MESSENGER_CONFIG_PATH
+      description: "MMessenger Config Directory Path"
+      label: "Config Directory Path"
+      type: "string"
+      required: true
+      default: "/opt/MMessengerServer/config"
+    - variable: MMSG_MESSENGER_CERT_PATH
+      description: "MMessenger Certificate Path"
+      label: "Certificate Directory Path"
+      type: "string"
+      required: true
+      default: "/opt/MCerts/messenger"
+mmsg:
+  scale: 2

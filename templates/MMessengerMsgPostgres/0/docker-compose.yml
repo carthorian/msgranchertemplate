@@ -1,0 +1,17 @@
+messagepostgres:
+    container_name: messagepostgres
+    image: mmessenger/mpostgres
+    restart: always
+    volumes:
+      - ${MMSG_POSTGRES_MSG_DATA}:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${MMSG_POSTGRES_MSG_USER}
+      POSTGRES_PASSWORD: ${MMSG_POSTGRES_MSG_PASSWORD}
+      POSTGRES_DB: ${MMSG_POSTGRES_MSG_DB}
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.hostname_override: container_name
+    tty: true
+    stdin_open: true
+    ports:
+      - "5462:5432"

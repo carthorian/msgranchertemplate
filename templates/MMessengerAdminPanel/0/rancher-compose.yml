@@ -1,0 +1,40 @@
+.catalog:
+  name: "MMessenger Admin Panel"
+  version: "1.9"
+  description: "MMessenger Admin Panel"
+  questions:
+    - variable: MMGS_PNL_POSTGRE_DB
+      description: "Admin Panel PostgreSQL Connection Info { DB_HOST_NAME:DB_PORT/DB_NAME }"
+      label: "Account DB Info"
+      type: "string"
+      required: true
+      default: "account_postgres:5432/maccountdb"
+    - variable: MMSG_PNL_DB_USER
+      description: "Admin Panel PostgreSQL Database Username"
+      label: "PostgreSQL Database Username"
+      type: "string"
+      required: true
+      default: "mmsguser"
+    - variable: MMSG_PNL_DB_PASS
+      description: "Admin Panel PostgreSQL Database Password"
+      label: "PostgreSQL Database Password"
+      type: "string"
+      required: true
+      default: "mmsgpass"
+    - variable: MMSG_PNL_ADMIN_MODE
+      description: "Admin Panel Admin Mode"
+      label: "Admin Mode"
+      type: "enum"
+      required: true
+      options:
+         - true
+         - false
+      default: "false"
+    - variable: MMSG_PNL_JAVA_PORT
+      description: "Admin Panel Application Port"
+      label: "Application Port"
+      type: "int"
+      required: true
+      default: "8080"
+madminpanel:
+  scale: 1

@@ -1,0 +1,13 @@
+.catalog:
+  name: "MMessenger Redis Module"
+  version: "4.0.6"
+  description: "MMessenger Redis Database"
+  questions:
+    - variable: MMSG_REDIS_DATA
+      description: "Redis Data Directory Path"
+      label: "Data Directory Path"
+      type: "string"
+      required: true
+      default: "/mmsg-data/redis"
+redis:
+  scale: 1
